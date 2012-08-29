@@ -1,4 +1,4 @@
-from bottle import get, post, request, abort, view
+from bottle import get, post, request, response, abort, view, hook
 import json
 
 import wli
@@ -15,6 +15,11 @@ def xjson_loads(s):
 
 # customize the following line in order to connect to your own instance of MongoDB
 mongo = pymongo.Connection('opendata')
+
+@hook('after_request')
+def enable_cors():
+    ''' Enable Cross-Origin Resource Sharing '''
+    response.headers['Access-Control-Allow-Origin'] = '*'
 
 @get('/retrieve/<url:path>')
 def retrieve_page(url):
