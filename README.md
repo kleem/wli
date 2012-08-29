@@ -5,6 +5,9 @@ Web Language Identifier
 
 # Dependencies
 - Python with Bottle framework
+- MongoDB & PyMongo
+
+# Language Identifiers
 - Chromium Compact Language Detector
-- Perl & Lingua::Identify
+- Lingua::Identify (Perl)
 - langid.py
