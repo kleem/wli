@@ -4,7 +4,7 @@ WLI
 Web Language Identifier
 
 # Usage
-Base URL: http://wafi.iit.cnr.it/multilingualweb/wli/api/<command>/<parameters>
+Base URL: `http://wafi.iit.cnr.it/multilingualweb/wli/api/<command>/<parameters>`
 
 Commands:
 - GET `retrieve/<url>` to retrieve a web page (HTTP only)
