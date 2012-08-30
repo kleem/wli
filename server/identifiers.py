@@ -50,7 +50,7 @@ import subprocess
 def lingua_identify(page):
     ''' Run Lingua::Identify on the given page. '''
     # Perl wrapper
-    pipe = subprocess.Popen(["perl","/home/wafi/wli/server/lingua_identify.pl"], stdin=subprocess.PIPE, stdout=subprocess.PIPE) # FIXME absolute path
+    pipe = subprocess.Popen(["perl","/home/wafi/servers/wli/lingua_identify.pl"], stdin=subprocess.PIPE, stdout=subprocess.PIPE) # FIXME absolute path
     out = pipe.communicate(input=page)[0]
     data = eval(out)
     return {
