@@ -2,16 +2,29 @@
 (function() {
 
   $(function() {
-    var _this = this;
+    var pretty, results,
+      _this = this;
     $('body').append(new fk.TextInput({
       id: 'search_box',
       input_id: 'search',
       submit_btn: new fk.Button({
         label: 'Identify'
       })
-    }));
-    return $('#search_box').bind('submit', function(event, text) {
-      return console.log(text);
+    })).append($("<ul class='_box _flex' id='results'></ul>"));
+    results = d3.select('#results');
+    pretty = d3.format('02%');
+    return $('#search_box').bind('submit', function(event, url) {
+      return d3.json('http://wafi.iit.cnr.it/multilingualweb/wli/api/retrieve+identify/' + url, function(data) {
+        return results.selectAll('.identifier').data(d3.entries(data), function(d) {
+          return d.key;
+        }).enter().append('li').attr('class', 'identifier').text(function(d) {
+          return d.key;
+        }).append('ul').selectAll('.lang').data(function(d) {
+          return d.value.result;
+        }).enter().append('li').attr('class', 'lang').text(function(d) {
+          return d[0] + ' ' + pretty(d[1]);
+        });
+      });
     });
   });
 
