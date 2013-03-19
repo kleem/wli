@@ -4,7 +4,6 @@
 
   refresh_results = function(data) {
     var all_node, identifier, identifier_node, lang, response, value, _results;
-    $('#results').empty();
     _results = [];
     for (identifier in data) {
       response = data[identifier];
@@ -51,6 +50,7 @@
       })
     })).append($("<ul class='_box _flex' id='results'></ul>"));
     $('#url_box').bind('submit', function(event, url) {
+      $('#results').empty();
       return $.ajax({
         url: 'http://wafi.iit.cnr.it/multilingualweb/wli/api/retrieve+identify/' + url,
         method: 'GET',
@@ -59,6 +59,7 @@
       });
     });
     return $('#text_box').bind('submit', function(event, text) {
+      $('#results').empty();
       return $.ajax({
         url: 'http://wafi.iit.cnr.it/multilingualweb/wli/api/identify',
         method: 'POST',

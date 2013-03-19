@@ -1,6 +1,4 @@
 refresh_results = (data) ->
-    $('#results').empty()
-    
     for identifier, response of data
         identifier_node = $("<li></li>")
         $('#results').append(identifier_node)
@@ -28,6 +26,7 @@ $ ->
     
     # UI callbacks
     $('#url_box').bind 'submit', (event, url) =>
+        $('#results').empty()
         $.ajax
             url: 'http://wafi.iit.cnr.it/multilingualweb/wli/api/retrieve+identify/'+url
             method: 'GET'
@@ -35,6 +34,7 @@ $ ->
             success: refresh_results
     
     $('#text_box').bind 'submit', (event, text) =>
+        $('#results').empty()
         $.ajax
             url: 'http://wafi.iit.cnr.it/multilingualweb/wli/api/identify'
             method: 'POST'
