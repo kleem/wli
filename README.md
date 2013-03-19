@@ -16,6 +16,11 @@ Commands:
 - MongoDB & PyMongo
 
 # Language Identifiers
-- Chromium Compact Language Detector
+- Chromium Compact Language Detector (Google, C++)
 - Lingua::Identify (Perl)
 - langid.py
+- HTML First Lang (a naive identifier that uses the first occurrence of the `lang` attribute to tell the language of the page)
+
+# Planned Identifiers (not included)
+- YALI
+- Language detection library for Java: https://code.google.com/p/language-detection/
