@@ -1,7 +1,7 @@
 WLI
 ===
 
-Web Language Identifier
+Web Language Identifier - try it at http://wafi.iit.cnr.it/multilingualweb/wli/ (please forgive the ugliness of the UI!)
 
 # Usage
 Service URL template: `http://wafi.iit.cnr.it/multilingualweb/wli/api/<command>/<parameters>`
