@@ -26,9 +26,6 @@ def isoify(code):
     
     return iso_code
 
-def isoify(code):
-    return code
-
 # BEGIN identifiers
 
 # Chromium Compact Language Detector
@@ -47,7 +44,8 @@ def chromium_cld(page):
     return {
         'data': data,
         'result': result,
-        'best': isoify(data[1])
+        'best': isoify(data[1]),
+        'best_name': iso639_3_index[isoify(data[1])]['ref_name']
     }
     
 # Lingua::Identify
@@ -63,7 +61,8 @@ def lingua_identify(page):
         'data': data,
         'result': dict([(isoify(l[0]), l[1]) for l in data['languages'].items()]), # UNORDERED
         #'result': [(isoify(l[0]), l[1]) for l in sorted(data['languages'].items(), key=lambda x: x[1], reverse=True)], # ORDERED
-        'best': isoify(data['best'].keys()[0])
+        'best': isoify(data['best'].keys()[0]),
+        'best_name': iso639_3_index[isoify(data['best'].keys()[0])]['ref_name']
     }
     
 # HTML first lang tag
@@ -78,14 +77,16 @@ def html_first_lang(page):
         return {
             'data': {'lang': 'unknown'},
             'result': {'und': 1}, # ISO 639-3 identifier for 'unknown': http://www-01.sil.org/iso639-3/codes.asp?order=lang_type&letter=s
-            'best': 'und'
+            'best': 'und',
+            'best_name': iso639_3_index[isoify('und')]['ref_name']
         }
     
     lang = match.group(1).lower()
     return {
         'data': {'lang': lang},
         'result': {isoify(lang): 1},
-        'best': isoify(lang)
+        'best': isoify(lang),
+        'best_name': iso639_3_index[isoify(lang)]['ref_name']
     }
     
 # langid.py
@@ -97,7 +98,8 @@ def langid(page):
     return {
         'data': data,
         'result': {isoify(data[0]): data[1]},
-        'best': isoify(data[0])
+        'best': isoify(data[0]),
+        'best_name': iso639_3_index[isoify(data[0])]['ref_name']
     }
 
 # END identifiers

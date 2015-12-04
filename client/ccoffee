@@ -1,4 +1,0 @@
-echo 'Compiling...'
-rm -Rf js
-coffee --compile --output js coffee
-
