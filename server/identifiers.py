@@ -29,6 +29,9 @@ def isoify(code):
     
     return iso_code
 
+def isoify(code):
+    return code
+
 # BEGIN identifiers
 
 # Chromium Compact Language Detector
@@ -102,8 +105,9 @@ def langid(page):
 
 # END identifiers
 
-ALL = [chromium_cld,
-       lingua_identify,
-       html_first_lang,
-       langid]
+ALL = [chromium_cld] #ATTENZIONE!!! Solo cld e' attivo!!!
+
+       # lingua_identify,
+       # html_first_lang,
+       # langid]
        
