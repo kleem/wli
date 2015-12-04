@@ -2,19 +2,7 @@ from bottle import get, post, request, response, abort, view, hook
 import json
 
 import wli
-
-import pymongo
-
-# BEGIN BSON/JSON adaptation layer
-from pymongo import json_util
-def xjson_dumps(d):
-    return json.dumps(d, default=json_util.default)
-def xjson_loads(s):
-    return json.loads(s, object_hook=json_util.object_hook)
-# END
-
-# customize the following line in order to connect to your own instance of MongoDB
-mongo = pymongo.Connection('opendata')
+from language_codes import iso639_3_index
 
 @hook('after_request')
 def enable_cors():
@@ -39,9 +27,9 @@ def retrieve_page_and_identify(url):
     
 @get('/language/<code>')
 def get_language(code):
-    ''' Get information about a laguage given its ISO 639-3 code. '''
-    language = mongo.wli.codes.find_one({'id': code}, {'_id': 0})
+    ''' Get information about a language given its ISO 639-3 code. '''
+    language = iso639_3_index['code']
     if not language:
         abort(404, 'No language with ISO 639-3 code %s' % code)
-    return xjson_dumps(language)
+    return json.dumps(language)
     

@@ -1,7 +1,4 @@
-import pymongo
-
-# customize the following line in order to connect to your own instance of MongoDB
-mongo = pymongo.Connection('opendata')
+from language_codes import iso639_3_index, iso639_1_index
 
 def isoify(code):
     ''' Map a language code to ISO 639-3, 'unknown' or 'nomap'. 'nomap' means that the code is not mappable to ISO. '''
@@ -20,9 +17,9 @@ def isoify(code):
         return 'mis' # ISO 639-3 identifier for 'uncoded languages': http://www-01.sil.org/iso639-3/codes.asp?order=lang_type&letter=s
         
     if len(code) == 2:
-        iso_code = mongo.wli.codes.find_one({'part1': code})['id']
+        iso_code = iso639_1_index[code]['id']
     else: # if len(code) == 3
-        iso_code = mongo.wli.codes.find_one({'id': code})['id']
+        iso_code = iso639_3_index[code]['id']
         
     if iso_code is None:
         return 'mis' # ISO 639-3 identifier for 'uncoded languages': http://www-01.sil.org/iso639-3/codes.asp?order=lang_type&letter=s
@@ -105,9 +102,8 @@ def langid(page):
 
 # END identifiers
 
-ALL = [chromium_cld] #ATTENZIONE!!! Solo cld e' attivo!!!
-
-       # lingua_identify,
-       # html_first_lang,
-       # langid]
+ALL = [chromium_cld,
+       lingua_identify,
+       html_first_lang,
+       langid]
        
